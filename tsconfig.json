@@ -1,0 +1,56 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "allowJs": true,
+    "baseUrl": ".",
+    "jsx": "preserve",
+    "exactOptionalPropertyTypes": false,
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    },
+    "verbatimModuleSyntax": false,
+    "isolatedModules": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "strictNullChecks": true,
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "incremental": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noImplicitReturns": false,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "stripInternal": true,
+    "ignoreDeprecations": "5.0",
+  },
+  "plugins": [
+    {
+      "name": "next"
+    }
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
