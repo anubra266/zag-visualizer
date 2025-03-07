@@ -3,9 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 import { GithubIcon, ZagIcon } from "@/components/visualizer/controls/icons";
 import { componentsMap } from "@/components/components-map";
-import { ComponentAnatomyName, getComponent } from "@zag-js/anatomy-icons";
 import Link from "next/link";
 import { ColorMode } from "@/components/color-mode";
+import { Anatomy } from "@/components/anatomy";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,23 +50,23 @@ export default function Home() {
         </div>
         <div className="machine-list">
           {Object.entries(componentsMap).map(([key, { title }]) => {
-            const Anatomy = getComponent(key as ComponentAnatomyName);
             return (
               <Link key={key} href={`/${key}`} className="machine-item">
                 <span>
                   {title}
-
-                  <Link
+                  <button
                     className="github-link"
-                    href={`https://github.com/chakra-ui/zag/blob/main/packages/machines/${key}/src/${key}.machine.ts`}
-                    target="_blank"
+                    onClick={() =>
+                      window.open(
+                        `https://github.com/chakra-ui/zag/blob/main/packages/machines/${key}/src/${key}.machine.ts`,
+                        "_blank"
+                      )
+                    }
                   >
                     <GithubIcon />
-                  </Link>
+                  </button>
                 </span>
-                {Anatomy && (
-                  <Anatomy accentColor="#6eeb6e" className="anatomy-icon" />
-                )}
+                <Anatomy component={key} />
               </Link>
             );
           })}

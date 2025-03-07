@@ -149,8 +149,8 @@ export function ZagIcon() {
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M105 32.7162L37.214 101L27.2472 94.0613L45.6346 53.9632L22.7996 72.6744L15 63.1073L58.4609 27.4951L67.9597 34.8593L52.915 67.6676L96.2643 24L105 32.7162Z"
         fill="currentColor"
       />

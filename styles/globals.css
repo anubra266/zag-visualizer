@@ -185,6 +185,8 @@ button {
   width: 27px;
   height: 27px;
   border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
 
   &:hover {
     background: rgba(255, 255, 255, 0.1);
