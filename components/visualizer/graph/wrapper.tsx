@@ -1,27 +1,27 @@
 /* eslint-disable react/no-children-prop */
 
-import { memo, useMemo } from "react"
+import { memo, useMemo } from "react";
 
-import { createDirectedGraph } from "@/components/visualizer/utils/graph/create-graph"
-import { useSimulation } from "@/components/visualizer/simulation/context"
+import { createDirectedGraph } from "@/components/visualizer/utils/graph/create-graph";
+import { useSimulation } from "@/components/visualizer/simulation/context";
 
-import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch"
-import { Graph } from "@/components/visualizer/graph"
-import { Background } from "@/components/visualizer/background"
-import { Controls } from "@/components/visualizer/controls"
-import { Nav } from "@/components/visualizer/graph/nav"
+import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
+import { Graph } from "@/components/visualizer/graph";
+import { Background } from "@/components/visualizer/background";
+import { Controls } from "@/components/visualizer/controls";
+import { Nav } from "@/components/visualizer/graph/nav";
 
-export const GraphWrapper = memo(function GraphWrapper(): JSX.Element {
-  const { service } = useSimulation()
+export const GraphWrapper = memo(function GraphWrapper() {
+  const { service } = useSimulation();
 
-  const machine = service.refs.get("machine")
+  const machine = service.refs.get("machine");
 
   const graph = useMemo(
     () => (machine ? createDirectedGraph(machine) : undefined),
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [machine?.id],
-  )
+    [machine?.id]
+  );
 
   return (
     <div className="graph-wrapper">
@@ -46,7 +46,7 @@ export const GraphWrapper = memo(function GraphWrapper(): JSX.Element {
         <Nav />
       </TransformWrapper>
     </div>
-  )
-})
+  );
+});
 
-GraphWrapper.displayName = "GraphWrapper"
+GraphWrapper.displayName = "GraphWrapper";

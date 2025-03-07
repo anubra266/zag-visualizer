@@ -1,15 +1,15 @@
-import { TransformComponent } from "react-zoom-pan-pinch"
+import { TransformComponent } from "react-zoom-pan-pinch";
 
 type CanvasProps = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
-export default function Canvas(props: CanvasProps): JSX.Element {
+export default function Canvas(props: CanvasProps) {
   return (
     <>
       <TransformComponent wrapperClass="wrapper" contentClass="content">
         {props.children}
       </TransformComponent>
     </>
-  )
+  );
 }

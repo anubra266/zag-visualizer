@@ -1,32 +1,32 @@
-import Head from "next/head"
-import type { GetServerSideProps } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import Head from "next/head";
+import type { GetServerSideProps } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 
-import { Visualizer } from "@/components/visualizer"
-import { serializeMachine } from "@/components/visualizer/utils/machine/serialize"
-import type { Machine } from "@/components/visualizer/types"
-import type { Component } from "@/components/components-map"
-import { componentsMap, settingsMap } from "@/components/components-map"
+import { Visualizer } from "@/components/visualizer";
+import { serializeMachine } from "@/components/visualizer/utils/machine/serialize";
+import type { Machine } from "@/components/visualizer/types";
+import type { Component } from "@/components/components-map";
+import { componentsMap, settingsMap } from "@/components/components-map";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-})
+});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-})
+});
 
 interface ComponentProps {
-  component: Component
-  serializedMachine: Machine
+  component: Component;
+  serializedMachine: Machine;
 }
 
-export default function Component(props: ComponentProps): JSX.Element {
-  const { component, serializedMachine } = props
-  const { component: child, title } = componentsMap[component]
-  const settings = settingsMap[component] ?? {}
+export default function Component(props: ComponentProps) {
+  const { component, serializedMachine } = props;
+  const { component: child, title } = componentsMap[component];
+  const settings = settingsMap[component] ?? {};
 
   return (
     <>
@@ -37,19 +37,23 @@ export default function Component(props: ComponentProps): JSX.Element {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Visualizer machine={child.machine} serializedMachine={serializedMachine} settings={settings} />
+        <Visualizer
+          machine={child.machine}
+          serializedMachine={serializedMachine}
+          settings={settings}
+        />
       </main>
     </>
-  )
+  );
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const component = context.params?.component
+  const component = context.params?.component;
 
-  const machinePath = `https://raw.githubusercontent.com/chakra-ui/zag/main/packages/machines/${component}/src/${component}.machine.ts`
-  const machineSource = await fetch(machinePath).then((r) => r.text())
+  const machinePath = `https://raw.githubusercontent.com/chakra-ui/zag/main/packages/machines/${component}/src/${component}.machine.ts`;
+  const machineSource = await fetch(machinePath).then((r) => r.text());
 
-  const isNotFound = machineSource === "404: Not Found"
+  const isNotFound = machineSource === "404: Not Found";
 
   if (isNotFound) {
     return {
@@ -57,12 +61,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         destination: "/",
         permanent: false,
       },
-    }
+    };
   }
 
-  const serializedMachine = machineSource ? serializeMachine(machineSource) : null
+  const serializedMachine = machineSource
+    ? serializeMachine(machineSource)
+    : null;
 
   return {
     props: { component, serializedMachine },
-  }
-}
+  };
+};
