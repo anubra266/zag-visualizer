@@ -10,7 +10,7 @@ import { StateNode } from "./state-node";
 import Canvas from "../canvas";
 import { Transition } from "./transition";
 import { GraphBounds } from "@/components/visualizer/graph/bounds";
-import type { FC, JSX } from "react";
+import type { FC } from "react";
 
 const MemoizedEdges = memo(Edges);
 const MemoizedStateNode = memo(StateNode);
